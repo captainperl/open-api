@@ -8,6 +8,9 @@ ENV SWAGGER_JSON "/app/swagger.json"
 
 WORKDIR /app
 
+COPY swagger.json /app/swagger.json
+RUN chmod 777 /app/swagger.json
+
 RUN apk update && apk add openssl
 RUN wget -qO- https://github.com/swagger-api/swagger-ui/archive/v${VERSION}.tar.gz | tar xvz
 RUN cp -r ${FOLDER}/dist/* . && rm -rf ${FOLDER}
